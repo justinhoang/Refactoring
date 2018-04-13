@@ -1,23 +1,33 @@
-import java.util.Date;
+import util.DateRange;
 
 class Rental {
-    private final Movie movie = new Movie("movie title", _daysRented);
+    private Movie _movie;
 
     private int _daysRented;
-    public Rental(String title, int priceCode, Date start, Date end) {
-        movie.setTitle(title);
-        movie.set_priceCode(priceCode);
-        _daysRented = (int)((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+
+    public Rental(Movie movie, DateRange dateRange) {
+        _movie = movie;
+        _daysRented = (int)((dateRange.getEnd().getTime() - dateRange.getStart().getTime()) / (1000 * 60 * 60 * 24));
     }
+
     public int getDaysRented() {
         return _daysRented;
     }
 
     public String getTitle() {
-        return movie.getTitle();
+        return _movie.getTitle();
     }
     
     public int getPriceCode() {
-        return movie.get_priceCode();
+        return _movie.get_priceCode();
     }
+
+    public void setMovie(Movie myMovie){
+        this._movie = myMovie;
+    }
+    public Movie getMovie(){
+        return _movie;
+    }
+
+
 }
